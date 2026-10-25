@@ -1,0 +1,12 @@
+---
+// An image in a case study. Click to zoom; pass `href` to make it a link instead.
+interface Props { src: string; alt?: string; width?: number; height?: number; href?: string; caption?: string }
+const { src, alt = '', width, height, href, caption } = Astro.props;
+const external = href && /^https?:/.test(href);
+---
+<figure class="fig">
+  {href
+    ? <a class="img-link" href={href} {...(external ? { target: '_blank', rel: 'noopener' } : {})}><img src={src} alt={alt} width={width} height={height} loading="lazy" decoding="async" /></a>
+    : <img class="zoomable" src={src} alt={alt} width={width} height={height} loading="lazy" decoding="async" />}
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>

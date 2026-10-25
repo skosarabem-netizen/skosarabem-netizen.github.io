@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import { RESUME, LINKEDIN } from '../lib/projects';
+
+const photo = '/assets/media/2023-11-profile-pic-1-min.webp';
+---
+<Base title="About – Swapnil Kosarabe" description="Swapnil Kosarabe is a UX designer based in New York with over 7 years of experience across gaming, healthcare, recruiting and film." image={photo} current="about">
+  <section class="about">
+    <div class="about-photo"><img src={photo} alt="Portrait of Swapnil Kosarabe" fetchpriority="high" /></div>
+    <div class="about-text">
+      <p class="eyebrow">About</p>
+      <h1>Designing powerful tools that feel simple.</h1>
+      <p>Hello! I'm Swapnil, a UX designer based in New York. Currently, I help organizations manage complex projects more efficiently by designing intuitive dependency management solutions at Asana. With over 7 years of experience in problem-solving and crafting innovative user experiences, I've tackled challenges across gaming, healthcare, recruiting, and film industries—always striving to blend functionality with aesthetics.</p>
+      <p>I've contributed to designing consumer tools at Unity and Teamblind, creator tools at Unity, and more recently, enterprise and creator tools at Asana. My work focuses on making powerful tools accessible and intuitive for diverse users.</p>
+      <p>My formal education in architecture taught me how to infuse expression into physical spaces and approach design through a user-centered lens, emphasizing functionality, system thinking, and user needs. An internship in Switzerland sparked my interest in digital architecture and human-computer interaction, leading me to pursue a degree in HCI at Indiana University.</p>
+      <p>Over the last six years, I’ve had the privilege of collaborating with various companies, leveraging my skills to create meaningful and innovative solutions for millions of users—always with a strong focus on bridging business needs with user interests.</p>
+      <p>Outside of work, I enjoy playing the piano, experimenting with different cuisines, sculpting, gardening, and mentoring young designers.</p>
+      <p>I believe that the journey matters more than the destination, a principle I apply to my UX work. I'm currently exploring new opportunities—feel free to reach out if you're intrigued by my work!</p>
+      <div class="about-links">
+        <a class="btn" href={LINKEDIN} target="_blank" rel="noopener">Connect on LinkedIn</a>
+        <a class="btn ghost" href={RESUME} target="_blank" rel="noopener">View resume</a>
+      </div>
+    </div>
+  </section>
+</Base>

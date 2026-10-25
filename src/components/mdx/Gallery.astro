@@ -1,0 +1,5 @@
+---
+interface Props { cols?: number }
+const { cols = 2 } = Astro.props;
+---
+<div class="gallery" style={`--cols:${cols}`}><slot /></div>

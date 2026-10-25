@@ -1,0 +1,6 @@
+---
+// Silent looping video that loads and plays when scrolled into view.
+interface Props { src: string; caption?: string }
+const { src, caption } = Astro.props;
+---
+<figure class="fig"><video data-src={src} muted loop playsinline preload="none"></video>{caption && <figcaption>{caption}</figcaption>}</figure>

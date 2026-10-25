@@ -1,0 +1,6 @@
+---
+interface Props { href: string }
+const { href } = Astro.props;
+const external = /^https?:/.test(href);
+---
+<p><a class="arrow-link" href={href} {...(external ? { target: '_blank', rel: 'noopener' } : {})}><slot /></a></p>

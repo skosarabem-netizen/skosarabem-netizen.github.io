@@ -1,0 +1,53 @@
+---
+import '../styles/global.css';
+import { RESUME, LINKEDIN } from '../lib/projects';
+
+interface Props { title: string; description: string; image?: string; current?: 'work' | 'about' }
+const { title, description, image, current } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = image ? new URL(image, Astro.site) : undefined;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <link rel="canonical" href={canonical}>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:url" content={canonical}>
+  {ogImage && <meta property="og:image" content={ogImage}>}
+  {ogImage && <meta name="twitter:card" content="summary_large_image">}
+  <meta name="theme-color" content="#0b0b0c">
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+  <script src="/assets/main.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Swapnil Kosarabe — home"><img src="/assets/favicon.png" alt="" width="28" height="28"><span>Swapnil Kosarabe</span></a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="/#work" aria-current={current === 'work' ? 'page' : undefined}>Work</a>
+      <a href="/#archive">Archive</a>
+      <a href="/about/" aria-current={current === 'about' ? 'page' : undefined}>About</a>
+      <a href={RESUME} target="_blank" rel="noopener">Resume <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main"><slot /></main>
+  <footer class="site-footer">
+    <p class="eyebrow">Get in touch</p>
+    <p class="footer-big">Let’s build something intuitive together.</p>
+    <div class="footer-links">
+      <a href={LINKEDIN} target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
+      <a href={RESUME} target="_blank" rel="noopener">Resume <span aria-hidden="true">↗</span></a>
+    </div>
+    <p class="copy">© {new Date().getFullYear()} Swapnil Kosarabe</p>
+  </footer>
+</body>
+</html>

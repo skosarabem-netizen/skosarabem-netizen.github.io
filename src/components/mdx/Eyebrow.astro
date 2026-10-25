@@ -1,0 +1,5 @@
+---
+interface Props { num?: boolean }
+const { num } = Astro.props;
+---
+<p class:list={['eyebrow', { num }]}><slot /></p>

@@ -1,0 +1,50 @@
+---
+// Interim home page. Phase 2 replaces the top of this page with the splash → theater experience.
+import Base from '../layouts/Base.astro';
+import { byKind, url, media } from '../lib/projects';
+
+const work = await byKind('work');
+const archive = await byKind('archive');
+---
+<Base title="Swapnil Kosarabe – Product Designer" description="Swapnil Kosarabe is an architect turned product designer who solves complex problems by crafting intuitive experiences." image={media(work[0]?.data.cover)} current="work">
+  <section class="intro">
+    <p class="eyebrow">Product designer · New York</p>
+    <h1>Hello! I’m Swapnil — an architect turned product designer who loves solving complex problems by crafting intuitive experiences, with a focus on <em>product strategy</em>, <em>interaction design</em> and <em>visual design</em>.</h1>
+    <a class="arrow-link" href="/about/">More about me</a>
+  </section>
+
+  <section id="work" aria-labelledby="work-h">
+    <h2 class="section-label" id="work-h">Selected work</h2>
+    <div class="work-list">
+      {work.map((p, i) => (
+        <a class="work-card" href={url(p)}>
+          <div class="work-media"><img src={media(p.data.cover)} alt="" loading={i === 0 ? 'eager' : 'lazy'} decoding="async" /></div>
+          <div class="work-info">
+            <p class="work-org">{p.data.logo && <img src={media(p.data.logo)} alt="" />}{p.data.org} · {p.data.years}</p>
+            <h3>{p.data.title}</h3>
+            <p class="work-desc">{p.data.summary}</p>
+            <span class="arrow-link">View case study</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="archive" id="archive" aria-labelledby="arch-h">
+    <h2 class="section-label" id="arch-h">Archive</h2>
+    <div class="arch-grid">
+      {archive.map(p => (
+        <a class="arch-card" href={url(p)}>
+          <div class="arch-media"><img src={media(p.data.cover)} alt="" loading="lazy" decoding="async" /></div>
+          <h3>{p.data.title}</h3>
+          <p>{p.data.summary}</p>
+        </a>
+      ))}
+      <div class="arch-card">
+        <div class="arch-media"><img src="/assets/media/2021-08-thumbnail-overttone-1.webp" alt="" loading="lazy" decoding="async" /></div>
+        <h3>Overtone – Unity</h3>
+        <p>Social platform for gamers to meet new people and find relevant communities.</p>
+      </div>
+    </div>
+  </section>
+</Base>
